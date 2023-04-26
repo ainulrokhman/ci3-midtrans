@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 26 Apr 2023 pada 11.08
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.3
+-- Host: localhost
+-- Generation Time: Apr 26, 2023 at 03:16 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `class`
+-- Table structure for table `class`
 --
 
 CREATE TABLE `class` (
@@ -36,10 +35,22 @@ CREATE TABLE `class` (
   `updated_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`class_id`, `class_name`, `class`, `created_date`, `updated_date`) VALUES
+(1, 'IPS', 'X', '2023-04-26 17:13:02', '2023-04-26 17:13:02'),
+(2, 'IPS', 'XI', '2023-04-26 20:04:46', '2023-04-26 20:04:46'),
+(3, 'IPS', 'XII', '2023-04-26 20:04:46', '2023-04-26 20:04:46'),
+(4, 'IPA', 'X', '2023-04-26 17:13:02', '2023-04-26 17:13:02'),
+(5, 'IPA', 'XI', '2023-04-26 20:04:46', '2023-04-26 20:04:46'),
+(6, 'IPA', 'XII', '2023-04-26 20:04:46', '2023-04-26 20:04:46');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_biaya`
+-- Table structure for table `jenis_biaya`
 --
 
 CREATE TABLE `jenis_biaya` (
@@ -52,7 +63,7 @@ CREATE TABLE `jenis_biaya` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `siswa`
+-- Table structure for table `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -71,7 +82,7 @@ CREATE TABLE `siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `siswa`
+-- Dumping data for table `siswa`
 --
 
 INSERT INTO `siswa` (`id`, `nis`, `nama`, `id_kelas`, `email`, `telp`, `tahun_masuk`, `wali_nama`, `wali_email`, `wali_telp`, `created_date`, `updated_date`) VALUES
@@ -111,7 +122,7 @@ INSERT INTO `siswa` (`id`, `nis`, `nama`, `id_kelas`, `email`, `telp`, `tahun_ma
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_transaction`
+-- Table structure for table `tb_transaction`
 --
 
 CREATE TABLE `tb_transaction` (
@@ -134,58 +145,90 @@ CREATE TABLE `tb_transaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_transaction`
+-- Dumping data for table `tb_transaction`
 --
 
 INSERT INTO `tb_transaction` (`order_id`, `customer_name`, `customer_email`, `gross_amount`, `payment_type`, `transaction_time`, `settlement_time`, `bank`, `va_numbers`, `status_message`, `pdf_url`, `transaction_status`, `status_code`, `transaction_id`, `finish_redirect_url`, `payment_code`) VALUES
 ('1635134350', 'Guest', 'guest@mail.com', 300000, 'bank_transfer', '2023-04-08 13:50:50', NULL, 'bca', '66796886228', 'Transaksi sedang diproses', 'https://app.sandbox.midtrans.com/snap/v1/transactions/13179a2d-0c3d-4424-871b-476f5add80d3/pdf', 'pending', '201', NULL, 'https://denatureindonesia.me/?order_id=1635134350&status_code=201&transaction_status=pending&wc-api=WC_Gateway_Midtrans', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_kelas_siswa`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_kelas_siswa` (
+`id` int(11)
+,`nis` varchar(30)
+,`nama` varchar(100)
+,`id_kelas` int(11)
+,`email` varchar(100)
+,`telp` varchar(15)
+,`tahun_masuk` year(4)
+,`wali_nama` varchar(255)
+,`wali_email` varchar(255)
+,`wali_telp` varchar(255)
+,`created_date` datetime
+,`updated_date` datetime
+,`class_name` varchar(50)
+,`class` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_kelas_siswa`
+--
+DROP TABLE IF EXISTS `v_kelas_siswa`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_kelas_siswa`  AS SELECT `siswa`.`id` AS `id`, `siswa`.`nis` AS `nis`, `siswa`.`nama` AS `nama`, `siswa`.`id_kelas` AS `id_kelas`, `siswa`.`email` AS `email`, `siswa`.`telp` AS `telp`, `siswa`.`tahun_masuk` AS `tahun_masuk`, `siswa`.`wali_nama` AS `wali_nama`, `siswa`.`wali_email` AS `wali_email`, `siswa`.`wali_telp` AS `wali_telp`, `siswa`.`created_date` AS `created_date`, `siswa`.`updated_date` AS `updated_date`, `class`.`class_name` AS `class_name`, `class`.`class` AS `class` FROM (`siswa` join `class` on(`siswa`.`id_kelas` = `class`.`class_id`))  ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `class`
+-- Indexes for table `class`
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`);
 
 --
--- Indeks untuk tabel `jenis_biaya`
+-- Indexes for table `jenis_biaya`
 --
 ALTER TABLE `jenis_biaya`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `siswa`
+-- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_transaction`
+-- Indexes for table `tb_transaction`
 --
 ALTER TABLE `tb_transaction`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `class`
+-- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `jenis_biaya`
+-- AUTO_INCREMENT for table `jenis_biaya`
 --
 ALTER TABLE `jenis_biaya`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `siswa`
+-- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
