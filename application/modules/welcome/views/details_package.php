@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="your_client_key"></script>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-HTM4gjaqe871Tnkx"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
             <h1><?= $this->input->get('package_name') ?></h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis assumenda velit nobis, voluptas repellendus quam, sunt quasi praesentium repellat nulla commodi hic quo atque. Repudiandae, qui! Voluptatum error animi quam.</p>
             <h3>Complete the form!</h3>
-            <form id="payment-form" method="post" action="<?= site_url() ?>/snap/finish">
+            <form id="payment-form" method="post" action="<?= site_url() ?>snap/finish">
                 <input type="hidden" name="result_type" id="result-type" value="">
                 <input type="hidden" name="result_data" id="result-data" value="">
                 <div class="form-group">
@@ -62,7 +62,7 @@
             var package_price = $("#package_price").val();
             $.ajax({
                 type: 'POST',
-                url: '<?= site_url() ?>/snap/token',
+                url: '<?= site_url() ?>snap/token',
                 data: {
                     name: name,
                     email: email,
@@ -88,7 +88,6 @@
                     }
 
                     snap.pay(data, {
-
                         onSuccess: function(result) {
                             changeResult('success', result);
                             console.log(result.status_message);
