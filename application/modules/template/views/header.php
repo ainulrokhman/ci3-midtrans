@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="<?= base_url('assets/css/styles.css') ?>" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php if (isset($css)) : ?>
         <?php foreach ($css as $c) : ?>
             <link href="<?= $c ?>" rel="stylesheet" />
@@ -18,10 +19,10 @@
     <?php endif; ?>
 </head>
 
-<body class="sb-nav-fixed"> 
+<body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="<?= base_url() ?>">Sistem Pakar ISPA</a>
+        <a class="navbar-brand ps-3" href="<?= base_url('siswa') ?>">Sistem Pakar ISPA</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar-->

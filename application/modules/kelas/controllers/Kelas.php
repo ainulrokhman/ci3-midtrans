@@ -1,18 +1,18 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Siswa extends MX_Controller
+class Kelas extends MX_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['M_Siswa']);
+        $this->load->model(['M_Kelas']);
         $this->load->model("DatatableServerSideModel", "ds");
     }
     public function index()
     {
-        $data['title'] = "Siswa";
-        $data['kelas'] = $this->M_Siswa->get_all()->result();
+        $data['title'] = "Kelas";
+        $data['kelas'] = $this->M_Kelas->get_all()->result();
         $data['css'] = [
             "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css",
             "https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"
@@ -31,7 +31,7 @@ class Siswa extends MX_Controller
                 "jurusan" => $this->input->post('jurusan', true),
                 "tingkat" => $this->input->post('tingkat', true),
             ];
-            $insert = $this->M_Siswa->insert($data);
+            $insert = $this->M_Kelas->insert($data);
             $notif = $this->load->view('template/alert', array(
                 'condition' => $insert,
                 'msg' => "Data berhasil disimpan!"
@@ -56,7 +56,7 @@ class Siswa extends MX_Controller
                 "jurusan" => $this->input->post('jurusan', true),
                 "tingkat" => $this->input->post('tingkat', true),
             ];
-            $update = $this->M_Siswa->update($data);
+            $update = $this->M_Kelas->update($data);
             $notif = $this->load->view('template/alert', array(
                 'condition' => $update,
                 'msg' => "Data berhasil diupdate!"
@@ -68,7 +68,7 @@ class Siswa extends MX_Controller
 
         $this->load->helper('form');
         $data['title'] = "Kelas";
-        $data['kelas'] = $this->M_Siswa->get_by_id($id)->result()[0];
+        $data['kelas'] = $this->M_Kelas->get_by_id($id)->result()[0];
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar');
@@ -78,7 +78,7 @@ class Siswa extends MX_Controller
 
     public function hapus($id)
     {
-        $hapus = $this->M_Siswa->delete($id);
+        $hapus = $this->M_Kelas->delete($id);
         $notif = $this->load->view('template/alert', array(
             'condition' => $hapus,
             'msg' => "Data berhasil dihapus!"
@@ -89,9 +89,9 @@ class Siswa extends MX_Controller
 
     public function datatable()
     {
-        $this->ds->setTableName("v_kelas_siswa");
+        $this->ds->setTableName("kelas");
 
-        $fields = ["nis", "nama", "tahun_masuk", 'jurusan', 'tingkat'];
+        $fields = ["jurusan", "tingkat"];
         $this->ds->setFiled($fields);
 
         $result = $this->ds->get();
@@ -99,13 +99,11 @@ class Siswa extends MX_Controller
         $data = [];
         $no = $_POST['start'];
         foreach ($result['data'] as $d) {
-            $action = $this->action("siswa/edit/{$d->id}", base_url("siswa/hapus/{$d->id}"));
+            $action = $this->action("kelas/edit/{$d->id}", base_url("kelas/hapus/{$d->id}"));
             $row = [];
             $row[] = ++$no;
-            $row[] = $d->nis;
-            $row[] = $d->nama;
-            $row[] = "{$d->tingkat} {$d->jurusan}";
-            $row[] = $d->tahun_masuk;
+            $row[] = $d->jurusan;
+            $row[] = $d->tingkat;
             $row[] = $action;
             $data[] = $row;
         }

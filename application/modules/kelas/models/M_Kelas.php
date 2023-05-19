@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_Siswa extends CI_Model
+class M_Kelas extends CI_Model
 {
-    protected $TABLE_NAME = "v_kelas_siswa";
+    protected $TABLE_NAME = "kelas";
     public function get_all()
     {
         return $this->db->get($this->TABLE_NAME);
@@ -14,14 +14,14 @@ class M_Siswa extends CI_Model
     }
     public function insert($data)
     {
-        return $this->db->insert("siswa", $data);
+        return $this->db->insert($this->TABLE_NAME, $data);
     }
     public function update($data)
     {
-        return $this->db->update("siswa", $data, ['id' => $data['id']]);
+        return $this->db->update($this->TABLE_NAME, $data, ['id' => $data['id']]);
     }
     public function delete($id)
     {
-        return $this->db->delete("siswa", array('id' => $id));
+        return $this->db->delete($this->TABLE_NAME, array('id' => $id));
     }
 }
