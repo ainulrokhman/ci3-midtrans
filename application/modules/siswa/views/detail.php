@@ -1,15 +1,8 @@
-<?php
-$option = array();
-$option[''] = "Pilih Kelas";
-foreach ($kelas as $k) {
-    $option[$k->id] = "{$k->tingkat} {$k->jurusan}";
-}
-?>
 <div class="container">
     <div class="card">
         <div class="card-header">Update Data</div>
         <div class="card-body">
-            <?= form_open(); ?>
+            <?= form_open('', '', ['id' => $siswa->id]); ?>
             <div class="mb-3 row">
                 <?= form_label("NIS", "nis", [
                     "class" => "col-sm-2 col-form-label"
@@ -18,7 +11,8 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "nis",
                         'name' => "nis",
-                        'required' => "true",
+                        'disabled' => "true",
+                        'value' => $siswa->nis,
                         'class' => "form-control",
                     ]); ?>
                 </div>
@@ -31,7 +25,8 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "nama",
                         'name' => "nama",
-                        'required' => "true",
+                        'disabled' => "true",
+                        'value' => $siswa->nama,
                         'class' => "form-control",
                     ]); ?>
                 </div>
@@ -41,7 +36,13 @@ foreach ($kelas as $k) {
                     "class" => "col-sm-2 col-form-label"
                 ]); ?>
                 <div class="col-sm-10">
-                    <?= form_dropdown('kelas', $option, "", ['class' => "form-select", 'id' => "kelas", 'required' => "true",]); ?>
+                    <?= form_input([
+                        'id' => "kelas",
+                        'name' => "kelas",
+                        'disabled' => "true",
+                        'value' => "{$siswa->tingkat} {$siswa->jurusan}",
+                        'class' => "form-control",
+                    ]); ?>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -49,7 +50,13 @@ foreach ($kelas as $k) {
                     "class" => "col-sm-2 col-form-label"
                 ]); ?>
                 <div class="col-sm-10">
-                    <?= form_input(['id' => "email", 'name' => "email", 'value' => "-", 'class' => "form-control", 'type' => "email"]); ?>
+                    <?= form_input([
+                        'id' => "email",
+                        'name' => "email",
+                        'disabled' => "true",
+                        'value' => $siswa->email,
+                        'class' => "form-control",
+                    ]); ?>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -60,8 +67,8 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "telp",
                         'name' => "telp",
-                        'type' => "number",
-                        'value' => "-",
+                        'disabled' => "true",
+                        'value' => $siswa->telp,
                         'class' => "form-control",
                     ]); ?>
                 </div>
@@ -74,8 +81,8 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "tahun_masuk",
                         'name' => "tahun_masuk",
-                        'type' => "number",
-                        'value' => date("Y"),
+                        'disabled' => "true",
+                        'value' => $siswa->tahun_masuk,
                         'class' => "form-control",
                     ]); ?>
                 </div>
@@ -88,7 +95,8 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "wali_nama",
                         'name' => "wali_nama",
-                        'required' => "true",
+                        'disabled' => "true",
+                        'value' => $siswa->wali_nama,
                         'class' => "form-control",
                     ]); ?>
                 </div>
@@ -101,8 +109,8 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "wali_email",
                         'name' => "wali_email",
-                        'type' => "email",
-                        'value' => "-",
+                        'disabled' => "true",
+                        'value' => $siswa->wali_email,
                         'class' => "form-control",
                     ]); ?>
                 </div>
@@ -115,20 +123,15 @@ foreach ($kelas as $k) {
                     <?= form_input([
                         'id' => "wali_telp",
                         'name' => "wali_telp",
-                        'type' => "number",
-                        'value' => "-",
+                        'disabled' => "true",
+                        'value' => $siswa->wali_telp,
                         'class' => "form-control",
                     ]); ?>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary form-control">Simpan</button>
+            <!-- <button type="submit" class="btn btn-primary form-control">Simpan</button> -->
+            <a href="<?= base_url("siswa/edit/{$siswa->id}"); ?>" class="btn btn-primary form-control" role="button">Ubah</a>
             <?= form_close(); ?>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script>
-    $(document).ready(function() {
-        $("#kelas option:first").attr('disabled', 'disabled');
-    });
-</script>

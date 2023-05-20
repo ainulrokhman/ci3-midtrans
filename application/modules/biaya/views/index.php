@@ -1,20 +1,19 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Siswa</h5>
+            <h5 class="card-title">Data Biaya</h5>
         </div>
         <div class="card-body">
-            <a href="<?= base_url('siswa/add'); ?>" class="btn btn-success btn-sm"><i class="fa fa-plus pe-1"></i>Tambah Siswa</a>
+            <a href="<?= base_url('biaya/add'); ?>" class="btn btn-success btn-sm"><i class="fa fa-plus pe-1"></i>Tambah Biaya</a>
             <?= $this->session->flashdata('success'); ?>
             <hr>
             <table id="tabel" class="table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>NIS</th>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>Angkatan</th>
+                        <th>Jenis Biaya</th>
+                        <th>Deskripsi</th>
+                        <th>Nominal</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -34,7 +33,7 @@
                 'serverSide': true,
                 'order': [],
                 'ajax': {
-                    'url': '<?= base_url('siswa/datatable'); ?>',
+                    'url': '<?= base_url('biaya/datatable'); ?>',
                     'type': 'POST'
                 },
                 "columnDefs": [{
@@ -43,11 +42,7 @@
                     },
                     {
                         "orderable": false,
-                        "targets": 3
-                    },
-                    {
-                        "orderable": false,
-                        "targets": 5
+                        "targets": 4
                     },
                 ]
             });

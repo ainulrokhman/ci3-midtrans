@@ -5,13 +5,17 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Menu</div>
+                    <a class="nav-link <?= $url == "kelas" ? "active" : ""; ?>" href="<?= base_url('kelas') ?>">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                        Kelas
+                    </a>
                     <a class="nav-link <?= $url == "siswa" ? "active" : ""; ?>" href="<?= base_url('siswa') ?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                         Siswa
                     </a>
-                    <a class="nav-link <?= $url == "siswa" ? "active" : ""; ?>" href="<?= base_url('kelas') ?>">
+                    <a class="nav-link <?= $url == "biaya" ? "active" : ""; ?>" href="<?= base_url('biaya') ?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                        Kelas
+                        Biaya
                     </a>
                 </div>
             </div>

@@ -11,7 +11,7 @@
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Something went wrong!',
+      text: '<?= $msg; ?>',
     })
   </script>
 <?php endif; ?>

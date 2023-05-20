@@ -7,6 +7,7 @@ class Kelas extends MX_Controller
     {
         parent::__construct();
         $this->load->model(['M_Kelas']);
+        $this->load->model(['siswa/M_Siswa']);
         $this->load->model("DatatableServerSideModel", "ds");
     }
     public function index()
@@ -78,10 +79,18 @@ class Kelas extends MX_Controller
 
     public function hapus($id)
     {
-        $hapus = $this->M_Kelas->delete($id);
+        $check = $this->db->get_where('siswa', array('id_kelas' => $id))->num_rows();
+        $condition = false;
+        $msg = "";
+        if ($check <= 0) {
+            $condition = $this->M_Kelas->delete($id);
+            $msg = "Data berhasil dihapus!";
+        } else {
+            $msg = "Kelas sudah dipakai!";
+        }
         $notif = $this->load->view('template/alert', array(
-            'condition' => $hapus,
-            'msg' => "Data berhasil dihapus!"
+            'condition' => $condition,
+            'msg' => $msg
         ), true);
         $this->session->set_flashdata('success', $notif);
         redirect(base_url("kelas"));
