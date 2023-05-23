@@ -83,8 +83,6 @@
                     function changeResult(type, data) {
                         $("#result-type").val(type);
                         $("#result-data").val(JSON.stringify(data));
-                        //resultType.innerHTML = type;
-                        //resultData.innerHTML = JSON.stringify(data);
                     }
 
                     snap.pay(data, {
@@ -97,11 +95,13 @@
                         onPending: function(result) {
                             changeResult('pending', result);
                             console.log(result.status_message);
+                            console.log(result);
                             $("#payment-form").submit();
                         },
                         onError: function(result) {
                             changeResult('error', result);
                             console.log(result.status_message);
+                            console.log(result);
                             $("#payment-form").submit();
                         }
                     });

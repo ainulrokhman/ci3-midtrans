@@ -23,7 +23,7 @@ class Snap extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$params = array('server_key' => 'SB-Mid-server-Gpf9brYyVBikQFAo5r2N_apO', 'production' => false);
+		$params = array('server_key' => 'SB-Mid-server-gQklrmnTFk9302Hk9rQgRA1u', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
 		$this->load->helper('url');
@@ -38,8 +38,7 @@ class Snap extends MX_Controller
 
 	public function token()
 	{
-
-		$name = $this->input->post('name');
+		$name = $this->input->post('nama');
 		$email = $this->input->post('email');
 		$package_name = $this->input->post('package_name');
 		$package_price = $this->input->post('package_price');
@@ -124,13 +123,16 @@ class Snap extends MX_Controller
 
 		error_log(json_encode($transaction_data));
 		$snapToken = $this->midtrans->getSnapToken($transaction_data);
-		error_log($snapToken);
+		// error_log($snapToken);
 		echo $snapToken;
 	}
 
 	public function finish()
 	{
 		$result = json_decode($this->input->post('result_data'), true);
+		$result['biaya_id'] = $this->input->post('package_id', true);
+		$result['siswa_id'] = $this->input->post('siswa', true);
+
 		$type = $result['payment_type'];
 		if ($type == 'bank_transfer') {
 			$this->bank_transfer($result);
@@ -145,17 +147,20 @@ class Snap extends MX_Controller
 		// echo 'RESULT <br><pre>';
 		// var_dump($result);
 		// echo '</pre>';
-		echo $this->massage;
+		$notif = $this->load->view('template/alert', array(
+			'condition' => true,
+			'msg' => $result['status_message']
+		), true);
+		$this->session->set_flashdata('success', $notif);
+		redirect(base_url('transaction/detail') . $result['finish_redirect_url']);
 	}
 
 	public function bank_transfer($result)
 	{
-		$name = $this->input->post('name');
-		$email = $this->input->post('email');
 		$data = [
 			'order_id'	  		 => $result['order_id'],
-			'customer_name'           => $name,
-			'customer_email'           => $email,
+			'biaya_id'	  		 => $result['biaya_id'],
+			'siswa_id'	  		 => $result['siswa_id'],
 			'gross_amount'		 => $result['gross_amount'],
 			'payment_type' 		 => $result['payment_type'],
 			'transaction_time'   => $result['transaction_time'],
@@ -178,12 +183,10 @@ class Snap extends MX_Controller
 
 	public function gopay($result)
 	{
-		$name = $this->input->post('name');
-		$email = $this->input->post('email');
 		$data = [
 			'order_id'	  		 => $result['order_id'],
-			'customer_name'           => $name,
-			'customer_email'           => $email,
+			'biaya_id'	  		 => $result['biaya_id'],
+			'siswa_id'	  		 => $result['siswa_id'],
 			'gross_amount'		 => $result['gross_amount'],
 			'payment_type' 		 => $result['payment_type'],
 			'transaction_time'   => $result['transaction_time'],
@@ -208,12 +211,10 @@ class Snap extends MX_Controller
 
 	public function qris($result)
 	{
-		$name = $this->input->post('name');
-		$email = $this->input->post('email');
 		$data = [
 			'order_id'	  		 => $result['order_id'],
-			'customer_name'           => $name,
-			'customer_email'           => $email,
+			'biaya_id'	  		 => $result['biaya_id'],
+			'siswa_id'	  		 => $result['siswa_id'],
 			'gross_amount'		 => $result['gross_amount'],
 			'payment_type' 		 => $result['payment_type'],
 			'transaction_time'   => $result['transaction_time'],
@@ -227,6 +228,7 @@ class Snap extends MX_Controller
 			// add
 			'transaction_id' => $result['transaction_id']
 		];
+		echo json_encode($result);
 		$save = $this->M_Snap->save_transaction($data);
 		if ($save == true) {
 			$this->massage = "Success";
@@ -238,12 +240,10 @@ class Snap extends MX_Controller
 
 	public function cstore($result)
 	{
-		$name = $this->input->post('name');
-		$email = $this->input->post('email');
 		$data = [
 			'order_id'	  		 => $result['order_id'],
-			'customer_name'           => $name,
-			'customer_email'           => $email,
+			'biaya_id'	  		 => $result['biaya_id'],
+			'siswa_id'	  		 => $result['siswa_id'],
 			'gross_amount'		 => $result['gross_amount'],
 			'payment_type' 		 => $result['payment_type'],
 			'transaction_time'   => $result['transaction_time'],

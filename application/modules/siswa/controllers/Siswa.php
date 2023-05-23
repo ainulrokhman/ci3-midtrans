@@ -12,6 +12,12 @@ class Siswa extends MX_Controller
     }
     public function index()
     {
+        if ($this->input->method() == "post") {
+            $id = $this->input->post('id', true);
+            $data = $this->M_Siswa->get_by_id($id)->row_array();
+            echo json_encode($data);
+            return;
+        }
         $data['title'] = "Siswa";
         $data['kelas'] = $this->M_Siswa->get_all()->result();
         $data['css'] = [

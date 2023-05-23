@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Bulan Mei 2023 pada 02.46
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.3
+-- Generation Time: May 23, 2023 at 06:18 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_biaya`
+-- Table structure for table `jenis_biaya`
 --
 
 CREATE TABLE `jenis_biaya` (
@@ -36,18 +35,19 @@ CREATE TABLE `jenis_biaya` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenis_biaya`
+-- Dumping data for table `jenis_biaya`
 --
 
 INSERT INTO `jenis_biaya` (`id`, `nama_biaya`, `deskripsi`, `nominal`) VALUES
 (1, 'Pembayaran SPP', '', 20000),
-(2, 'Uang Gedung', '', 500000),
-(4, 'Study Tour', 'Biaya jalan-jalan', 1200);
+(2, 'Uang Gedung', 'Deskripsi', 500000),
+(5, 'Study Tour', 'Jalan-jalan', 2750000),
+(6, 'Daftar Ulang', 'Kelas x -xii', 100000000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -59,7 +59,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kelas`
+-- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id`, `jurusan`, `tingkat`, `created_date`, `updated_date`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `kelas` (`id`, `jurusan`, `tingkat`, `created_date`, `updated_date`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `siswa`
+-- Table structure for table `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -92,53 +92,22 @@ CREATE TABLE `siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `siswa`
+-- Dumping data for table `siswa`
 --
 
 INSERT INTO `siswa` (`id`, `nis`, `nama`, `id_kelas`, `email`, `telp`, `tahun_masuk`, `wali_nama`, `wali_email`, `wali_telp`, `created_date`, `updated_date`) VALUES
-(1, '42418047', 'Guntur Pamuji', 6, 'ainul@email.com', '085227099929', 2025, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(3, '42418047', 'Muchamad Ainul Rokhman', 5, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(4, '42418047', 'Muchamad Ainul Rokhman', 4, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(5, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(6, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(7, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(8, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(9, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(10, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(11, '42418047', 'Muchamad Ainul Rokhman', 3, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(12, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(13, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(14, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(15, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(16, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(17, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(18, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(19, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(20, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(21, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(22, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(23, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(25, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(26, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(27, '42418047', 'Ridwan Kamil', 5, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(28, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(29, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(30, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(31, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(32, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainul@email.com', '085227099929', 2023, 'Guntur Pamuji', 'guntur@gmail.com', '085727554104', '2023-04-26 11:36:07', '2023-04-26 11:36:07'),
-(33, '1651651', 'Guntur Pamuji', 6, '-', '-', 2011, 'xxxx', '-', '-', '2023-05-19 08:17:43', '2023-05-19 08:17:43'),
-(35, '12345', 'Guntur Pamuji', 1, '-', '123456789', 2023, 'noname', '-', '-', '2023-05-20 09:03:10', '2023-05-20 09:03:10');
+(1, '42418047', 'Muchamad Ainul Rokhman', 1, 'ainulrokhman7@gmail.com', '086227099929', 2023, 'Guntur Pamuji', 'ainulrokhman7@gmail.com', '085227099929', '2023-05-23 11:05:48', '2023-05-23 11:05:48');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_transaction`
+-- Table structure for table `tb_transaction`
 --
 
 CREATE TABLE `tb_transaction` (
   `order_id` char(20) NOT NULL,
-  `customer_name` varchar(50) DEFAULT NULL,
-  `customer_email` varchar(20) DEFAULT NULL,
+  `biaya_id` int(11) NOT NULL,
+  `siswa_id` int(11) NOT NULL,
   `gross_amount` int(20) DEFAULT NULL,
   `payment_type` varchar(20) DEFAULT NULL,
   `transaction_time` datetime DEFAULT NULL,
@@ -155,18 +124,22 @@ CREATE TABLE `tb_transaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_transaction`
+-- Dumping data for table `tb_transaction`
 --
 
-INSERT INTO `tb_transaction` (`order_id`, `customer_name`, `customer_email`, `gross_amount`, `payment_type`, `transaction_time`, `settlement_time`, `bank`, `va_numbers`, `status_message`, `pdf_url`, `transaction_status`, `status_code`, `transaction_id`, `finish_redirect_url`, `payment_code`) VALUES
-('1635134350', 'Guest', 'guest@mail.com', 300000, 'bank_transfer', '2023-04-08 13:50:50', NULL, 'bca', '66796886228', 'Transaksi sedang diproses', 'https://app.sandbox.midtrans.com/snap/v1/transactions/13179a2d-0c3d-4424-871b-476f5add80d3/pdf', 'pending', '201', NULL, 'https://denatureindonesia.me/?order_id=1635134350&status_code=201&transaction_status=pending&wc-api=WC_Gateway_Midtrans', NULL),
-('72048098', 'Guest', 'guest@mail.com', 50000, 'bank_transfer', '2023-05-20 09:36:46', NULL, 'bca', '66796933559', 'Transaksi sedang diproses', 'https://app.sandbox.midtrans.com/snap/v1/transactions/d0a3c258-1a44-4ec9-acd0-b99e358473dc/pdf', 'pending', '201', NULL, '?order_id=72048098&status_code=201&transaction_status=pending', NULL);
+INSERT INTO `tb_transaction` (`order_id`, `biaya_id`, `siswa_id`, `gross_amount`, `payment_type`, `transaction_time`, `settlement_time`, `bank`, `va_numbers`, `status_message`, `pdf_url`, `transaction_status`, `status_code`, `transaction_id`, `finish_redirect_url`, `payment_code`) VALUES
+('107923929', 6, 1, 100000000, 'bank_transfer', '2023-05-23 23:15:12', '2023-05-23 23:17:00', 'bca', '22634523807', 'Success, transaction is found', 'https://app.sandbox.midtrans.com/snap/v1/transactions/bcb0f7c2-c146-401a-aa0d-f7fca61afd52/pdf', 'settlement', '201', NULL, '?order_id=107923929&status_code=201&transaction_status=pending', NULL),
+('1175423271', 5, 1, 2750000, 'qris', '2023-05-23 22:54:21', NULL, NULL, NULL, 'Success, transaction is expired', NULL, 'expire', '201', '0360a03e-ac5a-44f8-8c9e-5fa77442db64', '?order_id=1175423271&status_code=201&transaction_status=pending', NULL),
+('1821025179', 5, 1, 2750000, 'bank_transfer', '2023-05-23 22:31:02', NULL, 'bca', '22634100259', 'Success, transaction is canceled', 'https://app.sandbox.midtrans.com/snap/v1/transactions/446f5636-a087-44f3-a360-6fb942afadda/pdf', 'cancel', '201', NULL, '?order_id=1821025179&status_code=201&transaction_status=pending', NULL),
+('1882735439', 5, 1, 2750000, 'bank_transfer', '2023-05-23 23:09:36', NULL, 'bca', '22634691985', 'Success, transaction is found', 'https://app.sandbox.midtrans.com/snap/v1/transactions/eb2bce29-6740-43df-9df3-0cfd92aa03c7/pdf', 'settlement', '201', NULL, '?order_id=1882735439&status_code=201&transaction_status=pending', NULL),
+('321856013', 2, 1, 500000, 'bank_transfer', '2023-05-23 22:28:14', NULL, 'bca', '22634650871', 'Success, transaction is expired', 'https://app.sandbox.midtrans.com/snap/v1/transactions/bba89637-70ea-439f-b216-7050002ae7fd/pdf', 'expire', '201', NULL, '?order_id=321856013&status_code=201&transaction_status=pending', NULL),
+('538121231', 6, 1, 100000000, 'bank_transfer', '2023-05-23 22:24:22', NULL, 'bca', '22634835307', 'Success, transaction is canceled', 'https://app.sandbox.midtrans.com/snap/v1/transactions/7cbccf47-c366-495a-86f6-8fc22642c9bc/pdf', 'cancel', '201', NULL, '?order_id=538121231&status_code=201&transaction_status=pending', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `v_kelas_siswa`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `v_kelas_siswa`
+-- (See below for the actual view)
 --
 CREATE TABLE `v_kelas_siswa` (
 `id` int(11)
@@ -188,61 +161,85 @@ CREATE TABLE `v_kelas_siswa` (
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `v_kelas_siswa`
+-- Stand-in structure for view `v_trx`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_trx` (
+`order_id` char(20)
+,`status_message` text
+,`transaction_status` char(20)
+,`transaction_id` varchar(200)
+,`nama_siswa` varchar(100)
+,`jenis_biaya` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_kelas_siswa`
 --
 DROP TABLE IF EXISTS `v_kelas_siswa`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_kelas_siswa`  AS  select `siswa`.`id` AS `id`,`siswa`.`nis` AS `nis`,`siswa`.`nama` AS `nama`,`siswa`.`id_kelas` AS `id_kelas`,`siswa`.`email` AS `email`,`siswa`.`telp` AS `telp`,`siswa`.`tahun_masuk` AS `tahun_masuk`,`siswa`.`wali_nama` AS `wali_nama`,`siswa`.`wali_email` AS `wali_email`,`siswa`.`wali_telp` AS `wali_telp`,`siswa`.`created_date` AS `created_date`,`siswa`.`updated_date` AS `updated_date`,`kelas`.`jurusan` AS `jurusan`,`kelas`.`tingkat` AS `tingkat` from (`siswa` join `kelas` on(`siswa`.`id_kelas` = `kelas`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_kelas_siswa`  AS SELECT `siswa`.`id` AS `id`, `siswa`.`nis` AS `nis`, `siswa`.`nama` AS `nama`, `siswa`.`id_kelas` AS `id_kelas`, `siswa`.`email` AS `email`, `siswa`.`telp` AS `telp`, `siswa`.`tahun_masuk` AS `tahun_masuk`, `siswa`.`wali_nama` AS `wali_nama`, `siswa`.`wali_email` AS `wali_email`, `siswa`.`wali_telp` AS `wali_telp`, `siswa`.`created_date` AS `created_date`, `siswa`.`updated_date` AS `updated_date`, `kelas`.`jurusan` AS `jurusan`, `kelas`.`tingkat` AS `tingkat` FROM (`siswa` join `kelas` on(`siswa`.`id_kelas` = `kelas`.`id`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_trx`
+--
+DROP TABLE IF EXISTS `v_trx`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_trx`  AS SELECT `trx`.`order_id` AS `order_id`, `trx`.`status_message` AS `status_message`, `trx`.`transaction_status` AS `transaction_status`, `trx`.`transaction_id` AS `transaction_id`, `siswa`.`nama` AS `nama_siswa`, `jenis_biaya`.`nama_biaya` AS `jenis_biaya` FROM ((`tb_transaction` `trx` join `siswa` on(`trx`.`siswa_id` = `siswa`.`id`)) join `jenis_biaya` on(`trx`.`biaya_id` = `jenis_biaya`.`id`))  ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `jenis_biaya`
+-- Indexes for table `jenis_biaya`
 --
 ALTER TABLE `jenis_biaya`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kelas`
+-- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `siswa`
+-- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_transaction`
+-- Indexes for table `tb_transaction`
 --
 ALTER TABLE `tb_transaction`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `jenis_biaya`
+-- AUTO_INCREMENT for table `jenis_biaya`
 --
 ALTER TABLE `jenis_biaya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `kelas`
+-- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `siswa`
+-- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

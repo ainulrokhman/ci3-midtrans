@@ -17,6 +17,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                         Biaya
                     </a>
+                    <a class="nav-link <?= $url == "transaction" ? "active" : ""; ?>" href="<?= base_url('transaction') ?>">
+                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                        Transaksi
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">

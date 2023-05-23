@@ -13,6 +13,7 @@ class Welcome extends MX_Controller
 	public function index()
 	{
 		$this->load->view('welcome_message');
+		// redirect(base_url('siswa'));
 	}
 
 	public function details_package()

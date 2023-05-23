@@ -4,13 +4,13 @@
         <div class="card-body">
             <?= form_open(); ?>
             <div class="mb-3 row">
-                <?= form_label("Jenis Biaya", "jenis_biaya", [
+                <?= form_label("Jenis Biaya", "nama_biaya", [
                     "class" => "col-sm-2 col-form-label"
                 ]); ?>
                 <div class="col-sm-10">
                     <?= form_input([
-                        'id' => "jenis_biaya",
-                        'name' => "jenis_biaya",
+                        'id' => "nama_biaya",
+                        'name' => "nama_biaya",
                         'required' => "true",
                         'class' => "form-control",
                     ]); ?>
@@ -37,7 +37,7 @@
                     <?= form_input([
                         'id' => "nominal",
                         'name' => "nominal",
-                        'type' => "number",
+                        // 'type' => "number",
                         'required' => "true",
                         'class' => "form-control",
                     ]); ?>
@@ -48,3 +48,11 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $('#nominal').on('input', function() {
+        const value = unformatThousands($(this).val())
+        $(this).val(formatThousands(value))
+    })
+</script>
